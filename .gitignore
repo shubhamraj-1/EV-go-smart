@@ -35,6 +35,10 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 
+# tests
+tests/
+e2e/
+
 # MCP configuration
 .opencode/
 opencode.json
