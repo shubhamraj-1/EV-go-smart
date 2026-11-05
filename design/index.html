@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>EVgoSmart — Design directions</title>
+<meta name="description" content="Three design directions for EVgoSmart. Compare Calm Confidence, Night Ops, and Premium Mobility, then pick one.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317171A'/%3E%3Cpath d='M18 5 9 18h6l-1.5 9L23 14h-6l1-9Z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F6F3;--surface:#FFFFFF;--surface-2:#F2F1EC;
+  --ink:#17171A;--ink-2:#33333A;--muted:#6B6B74;--faint:#94949C;
+  --line:#E4E2DC;--line-strong:#CFCCC3;
+  --accent:#2563EB;--accent-soft:#E8EEFE;
+  --radius:16px;--radius-sm:10px;--pill:999px;
+  --font:"Inter",ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --shadow:0 1px 2px rgba(23,23,26,.04),0 20px 40px -28px rgba(23,23,26,.25);
+  --shadow-lg:0 2px 6px rgba(23,23,26,.05),0 36px 70px -34px rgba(23,23,26,.32);
+  --max:1200px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+img{display:block;max-width:100%}
+ul,ol{margin:0;padding:0;list-style:none}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:28px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(247,246,243,.86);backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid var(--line)}
+.topbar-in{display:flex;align-items:center;gap:22px;min-height:62px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:14.5px;letter-spacing:-.02em;text-decoration:none}
+.brand .mark{display:grid;place-items:center;width:24px;height:24px;border-radius:7px;background:var(--ink);color:#fff}
+.brand .mark svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.brand .divider{width:1px;height:14px;background:var(--line-strong)}
+.brand small{font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.topnav{display:flex;gap:22px;margin-left:auto}
+.topnav a{font-size:12.5px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .16s var(--ease)}
+.topnav a:hover{color:var(--ink)}
+.topbar .btn{min-height:34px;padding:0 14px;font-size:12px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:var(--pill);border:1px solid transparent;font:inherit;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;transition:background .18s var(--ease),border-color .18s var(--ease),transform .18s var(--ease),box-shadow .18s var(--ease)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--ink);color:#fff;box-shadow:0 12px 24px -18px rgba(23,23,26,.9)}
+.btn-primary:hover{background:#000}
+.btn-secondary{background:var(--surface);border-color:var(--line-strong);color:var(--ink)}
+.btn-secondary:hover{border-color:var(--ink)}
+.btn .arw{transition:transform .18s var(--ease)}
+.btn:hover .arw{transform:translateX(3px)}
+
+/* masthead */
+.masthead{padding-block:74px 40px;border-bottom:1px solid var(--line)}
+.kicker{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.kicker::before{content:"";width:26px;height:1px;background:var(--line-strong)}
+.masthead h1{margin-top:22px;font-size:clamp(38px,6vw,72px);line-height:.98;letter-spacing:-.05em;font-weight:600;max-width:16ch}
+.masthead h1 em{font-style:normal;color:var(--accent)}
+.masthead .lede{margin-top:22px;max-width:62ch;font-size:16.5px;line-height:1.65;color:var(--muted)}
+.masthead-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.masthead-meta span{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:var(--pill);padding:6px 11px}
+.masthead-meta i{width:5px;height:5px;border-radius:50%;background:var(--accent);font-style:normal}
+
+/* section heads */
+.section{padding-block:56px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:26px}
+.sec-head h2{font-size:clamp(22px,2.6vw,30px);line-height:1.1;letter-spacing:-.035em;font-weight:600}
+.sec-head p{max-width:44ch;font-size:13px;line-height:1.6;color:var(--muted)}
+.sec-num{display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.sec-num b{color:var(--accent);font-weight:500}
+
+/* direction cards */
+.dirs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.dir{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .22s var(--ease),box-shadow .22s var(--ease),border-color .22s var(--ease)}
+.dir:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--line-strong)}
+.dir-head{display:flex;align-items:flex-start;gap:12px;padding:20px 20px 16px}
+.dir-letter{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--d-soft);color:var(--d-deep);font-family:var(--mono);font-size:12px;font-weight:500;flex:none;border:1px solid var(--d-line)}
+.dir-head h3{font-size:19px;line-height:1.15;letter-spacing:-.03em;font-weight:600}
+.dir-head .tags{margin-top:3px;font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.dir-head .swatches{display:flex;gap:3px;margin-left:auto;padding-top:3px}
+.dir-head .swatches i{width:11px;height:11px;border-radius:3px;border:1px solid rgba(23,23,26,.08)}
+
+.shot{position:relative;display:block;margin:0 14px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--d-bg);aspect-ratio:16/10}
+.shot img.main{width:100%;height:100%;object-fit:cover;object-position:top left;transition:transform .5s var(--ease)}
+.dir:hover .shot img.main{transform:scale(1.025)}
+.shot .phone{position:absolute;right:10px;bottom:10px;width:68px;border-radius:7px;border:2px solid #fff;box-shadow:0 8px 22px -8px rgba(23,23,26,.5);transition:transform .3s var(--ease)}
+.dir:hover .shot .phone{transform:translateY(-4px)}
+.shot .open-tag{position:absolute;left:10px;bottom:10px;display:inline-flex;align-items:center;gap:5px;background:rgba(23,23,26,.82);color:#fff;font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:5px;backdrop-filter:blur(4px)}
+.dir-body{padding:22px 20px 0;flex:1}
+.dir-body .pitch{font-size:13px;line-height:1.6;color:var(--muted)}
+.pairs{display:grid;gap:10px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.pair{display:grid;grid-template-columns:66px 1fr;gap:10px;font-size:11.5px;line-height:1.5}
+.pair dt{font-family:var(--mono);font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);padding-top:2px}
+.pair dd{margin:0;color:var(--ink-2)}
+.dir-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 20px 18px;margin-top:18px}
+.dir-foot .type{font-family:var(--mono);font-size:9px;letter-spacing:.04em;color:var(--faint)}
+.dir-foot a{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--d-deep);text-decoration:none;white-space:nowrap}
+.dir-foot a svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .18s var(--ease)}
+.dir:hover .dir-foot a svg{transform:translateX(3px)}
+
+/* comparison */
+.table-wrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:auto}
+.cmp{width:100%;border-collapse:collapse;min-width:780px}
+.cmp th,.cmp td{padding:15px 18px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.cmp thead th{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:500;background:var(--surface-2);border-bottom:1px solid var(--line-strong);white-space:nowrap}
+.cmp thead th:first-child{width:150px}
+.cmp thead th b{display:block;margin-top:4px;font-family:var(--font);font-size:13px;letter-spacing:-.01em;text-transform:none;color:var(--ink);font-weight:600}
+.cmp tbody th{font-size:11px;font-weight:500;color:var(--muted);background:var(--surface-2);white-space:nowrap}
+.cmp tbody td{font-size:12px;line-height:1.55;color:var(--ink-2)}
+.cmp tbody tr:last-child th,.cmp tbody tr:last-child td{border-bottom:0}
+.cmp .dot{display:inline-flex;align-items:center;gap:6px}
+.cmp .dot::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c)}
+.cmp .win{color:var(--ink);font-weight:600}
+.scroll-hint{display:none;margin-top:10px;font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+
+/* review */
+.review{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.panel h3{font-size:16px;letter-spacing:-.02em}
+.panel > p{margin-top:6px;font-size:12.5px;line-height:1.6;color:var(--muted)}
+.steps{counter-reset:s;margin-top:20px;display:grid;gap:14px}
+.steps li{counter-increment:s;position:relative;padding-left:34px;font-size:12.5px;line-height:1.6;color:var(--ink-2)}
+.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:1px;font-family:var(--mono);font-size:9.5px;color:var(--accent);border:1px solid var(--line);border-radius:6px;padding:3px 5px;line-height:1;background:var(--surface-2)}
+.steps b{font-weight:600;color:var(--ink)}
+.checklist{margin-top:18px;display:grid;gap:0;border-top:1px solid var(--line)}
+.checklist li{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:12px;line-height:1.55;color:var(--ink-2)}
+.checklist li:last-child{border-bottom:0}
+.checklist svg{width:14px;height:14px;flex:none;margin-top:2px;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.next{background:var(--ink);color:#F6F5F1;border-color:var(--ink)}
+.next h3{color:#fff}
+.next > p{color:#A9A8A2}
+.next .steps li{color:#E6E4DE}
+.next .steps li::before{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18);color:#fff}
+.next .steps b{color:#fff}
+.next .note{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);font-size:11.5px;line-height:1.6;color:#A9A8A2}
+.next .note b{color:#fff;font-weight:600}
+
+/* footer */
+.foot{border-top:1px solid var(--line);margin-top:64px}
+.foot-in{display:flex;flex-wrap:wrap;align-items:center;gap:16px;padding-block:26px}
+.foot-in p{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.foot-in p:last-child{margin-left:auto}
+.foot a{color:var(--muted);text-decoration:none}
+.foot a:hover{color:var(--ink)}
+
+@media (max-width:1080px){
+  .dirs{grid-template-columns:1fr 1fr}
+  .review{grid-template-columns:1fr}
+}
+@media (max-width:820px){
+  .topnav{display:none}
+  .topbar .btn{margin-left:auto}
+  .masthead{padding-block:52px 32px}
+  .section{padding-block:44px}
+  .sec-head{display:block}
+  .sec-head p{margin-top:10px}
+  .dirs{grid-template-columns:1fr}
+  .scroll-hint{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+  .cmp{min-width:640px}
+  .cmp thead th:first-child{width:104px}
+  .cmp tbody th{position:sticky;left:0;z-index:2}
+}
+@media (max-width:560px){
+  .wrap{padding-inline:18px}
+  .brand small,.brand .divider{display:none}
+  .masthead h1{max-width:12ch}
+  .masthead .lede{font-size:15px}
+  .dir-head{padding:17px 16px 13px}
+  .shot{margin-inline:10px}
+  .dir-body{padding:18px 16px 0}
+  .dir-foot{padding:14px 16px 16px}
+  .panel{padding:20px}
+  .cmp th,.cmp td{padding:12px 14px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="index.html" aria-label="EVgoSmart design review home">
+      <span class="mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 13.5H11L9.5 22 19 9.5h-6.5L13 2Z"/></svg></span>
+      EVgoSmart <span class="divider" aria-hidden="true"></span> <small>Design review</small>
+    </a>
+    <nav class="topnav" aria-label="Sections">
+      <a href="#directions">Directions</a>
+      <a href="#compare">Compare</a>
+      <a href="#review">How to review</a>
+    </nav>
+    <a class="btn btn-primary" href="#directions">Pick a direction</a>
+  </div>
+</header>
+
+<main>
+  <section class="wrap masthead">
+    <p class="kicker">Design review · 5 November 2026</p>
+    <h1>Three directions.<br>One <em>calm</em> product.</h1>
+    <p class="lede">Each demo is the same product in a different voice: landing page, live customer booking, driver job, dispatch console, and a notes tab that states the trade-off. Nothing is wired to a backend yet — this is the surface we build the MVP on.</p>
+    <div class="masthead-meta">
+      <span><i></i> 3 directions</span>
+      <span><i></i> 5 screens each</span>
+      <span><i></i> 1280px + 390px</span>
+      <span><i></i> Demo fleet · Razorpay test</span>
+    </div>
+  </section>
+
+  <section class="wrap section" id="directions">
+    <div class="sec-head">
+      <div>
+        <p class="sec-num"><b>01</b> Directions</p>
+        <h2>Same flows, three voices.</h2>
+      </div>
+      <p>Open a direction, use the tabs at the top of the demo, then resize to 390px. The Notes tab in each demo explains what that direction is optimising for.</p>
+    </div>
+
+    <div class="dirs">
+
+      <article class="dir" style="--d-bg:#F3F5EF;--d-soft:#E2F1E9;--d-line:#C8D3C5;--d-deep:#0A5540">
+        <div class="dir-head">
+          <span class="dir-letter">A</span>
+          <div>
+            <h3>Calm Confidence</h3>
+            <p class="tags">Light · service-first</p>
+          </div>
+          <span class="swatches" aria-hidden="true">
+            <i style="background:#0D6B4E"></i><i style="background:#12241C"></i><i style="background:#F3F5EF"></i><i style="background:#A96A12"></i>
+          </span>
+        </div>
+        <a class="shot" href="calm-confidence.html" aria-label="Open Direction A, Calm Confidence">
+          <img class="main" src="thumbs/a-desktop.png" alt="Calm Confidence landing page at desktop width">
+          <img class="phone" src="thumbs/a-mobile.png" alt="" aria-hidden="true">
+          <span class="open-tag">Open demo ↗</span>
+        </a>
+        <div class="dir-body">
+          <p class="pitch">A service brand that happens to be technology. Soft sage surfaces, one primary action, an ETA that never leaves the screen.</p>
+          <dl class="pairs">
+            <div class="pair"><dt>Best for</dt><dd>A customer experience that feels trustworthy and human on a bad day.</dd></div>
+            <div class="pair"><dt>Watch out</dt><dd>Safest of the three. Needs a strong wordmark or photography to avoid generic SaaS.</dd></div>
+          </dl>
+        </div>
+        <div class="dir-foot">
+          <span class="type">Plus Jakarta Sans · 22px radius</span>
+          <a href="calm-confidence.html">Open A <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <article class="dir" style="--d-bg:#06090D;--d-soft:#1B2730;--d-line:#2A3A45;--d-deep:#B6FF3B">
+        <div class="dir-head">
+          <span class="dir-letter">B</span>
+          <div>
+            <h3>Night Ops</h3>
+            <p class="tags">Dark · operations-led</p>
+          </div>
+          <span class="swatches" aria-hidden="true">
+            <i style="background:#B6FF3B"></i><i style="background:#06090D"></i><i style="background:#0B1016"></i><i style="background:#FFB454"></i>
+          </span>
+        </div>
+        <a class="shot" href="night-ops.html" aria-label="Open Direction B, Night Ops">
+          <img class="main" src="thumbs/b-desktop.png" alt="Night Ops landing page at desktop width">
+          <img class="phone" src="thumbs/b-mobile.png" alt="" aria-hidden="true">
+          <span class="open-tag">Open demo ↗</span>
+        </a>
+        <div class="dir-body">
+          <p class="pitch">Mission control for a fleet that never sleeps. Acid lime on near-black, monospaced telemetry, and a console that looks like it belongs on a wall.</p>
+          <dl class="pairs">
+            <div class="pair"><dt>Best for</dt><dd>A distinctive, operations-led identity shown on a big screen as much as a phone.</dd></div>
+            <div class="pair"><dt>Watch out</dt><dd>Dark and dense can feel cold to an anxious customer in daylight.</dd></div>
+          </dl>
+        </div>
+        <div class="dir-foot">
+          <span class="type">Space Grotesk + JetBrains Mono</span>
+          <a href="night-ops.html">Open B <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <article class="dir" style="--d-bg:#F1ECE3;--d-soft:#F2DDD2;--d-line:#C4B49E;--d-deep:#853217">
+        <div class="dir-head">
+          <span class="dir-letter">C</span>
+          <div>
+            <h3>Premium Mobility</h3>
+            <p class="tags">Warm · editorial</p>
+          </div>
+          <span class="swatches" aria-hidden="true">
+            <i style="background:#A5411D"></i><i style="background:#1E1B18"></i><i style="background:#F1ECE3"></i><i style="background:#8F651F"></i>
+          </span>
+        </div>
+        <a class="shot" href="premium-mobility.html" aria-label="Open Direction C, Premium Mobility">
+          <img class="main" src="thumbs/c-desktop.png" alt="Premium Mobility landing page at desktop width">
+          <img class="phone" src="thumbs/c-mobile.png" alt="" aria-hidden="true">
+          <span class="open-tag">Open demo ↗</span>
+        </a>
+        <div class="dir-body">
+          <p class="pitch">A charge, delivered like a car service. Fraunces headlines, paper-warm surfaces, terracotta accents, and receipt-like clarity about price.</p>
+          <dl class="pairs">
+            <div class="pair"><dt>Best for</dt><dd>A premium service brand — closer to a hotel concierge than a utility app.</dd></div>
+            <div class="pair"><dt>Watch out</dt><dd>Editorial restraint can read as slow in an emergency. Flow must stay short.</dd></div>
+          </dl>
+        </div>
+        <div class="dir-foot">
+          <span class="type">Fraunces + Inter · 3px radius</span>
+          <a href="premium-mobility.html">Open C <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="wrap section" id="compare" style="padding-top:8px">
+    <div class="sec-head">
+      <div>
+        <p class="sec-num"><b>02</b> Compare</p>
+        <h2>The honest trade-offs.</h2>
+      </div>
+      <p>All three cover the same five screens. The difference is what each one makes easy, and what it makes harder.</p>
+    </div>
+
+    <p class="scroll-hint">Scroll the table sideways →</p>
+    <div class="table-wrap">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th scope="col">Dimension</th>
+            <th scope="col">A <b>Calm Confidence</b></th>
+            <th scope="col">B <b>Night Ops</b></th>
+            <th scope="col">C <b>Premium Mobility</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Personality</th>
+            <td>Reliable, warm utility</td>
+            <td>Precise, high-performance grid</td>
+            <td>Quiet, considered service</td>
+          </tr>
+          <tr>
+            <th scope="row">Customer tone</th>
+            <td>Reassuring and plain-spoken</td>
+            <td>Telemetric, clipped, capable</td>
+            <td>Concierge, editorial, calm</td>
+          </tr>
+          <tr>
+            <th scope="row">Dispatch console</th>
+            <td>Works, but needs a denser variant</td>
+            <td class="win">Native fit — designed for it</td>
+            <td>Elegant, but airy for live ops</td>
+          </tr>
+          <tr>
+            <th scope="row">Distinctiveness</th>
+            <td>Low–medium</td>
+            <td class="win">High</td>
+            <td class="win">High</td>
+          </tr>
+          <tr>
+            <th scope="row">Demo risk</th>
+            <td>Reads as a generic SaaS landing page</td>
+            <td>Dark theme on a projector or in sunlight</td>
+            <td>Serif can feel slow in an emergency</td>
+          </tr>
+          <tr>
+            <th scope="row">Build effort</th>
+            <td>Lowest — one sans, one radius</td>
+            <td>Medium — dual type system, dark tokens</td>
+            <td>Medium — two typefaces, editorial spacing</td>
+          </tr>
+          <tr>
+            <th scope="row">Strongest moment</th>
+            <td>The ETA ring and status rail</td>
+            <td class="win">The lime fleet map at night</td>
+            <td>The serif hero and receipt-style pricing</td>
+          </tr>
+          <tr>
+            <th scope="row">Accessibility</th>
+            <td>Comfortable contrast, least work</td>
+            <td>Needs care: lime on black, glare</td>
+            <td>Needs care: warm low-contrast text</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrap section" id="review" style="padding-top:14px">
+    <div class="sec-head">
+      <div>
+        <p class="sec-num"><b>03</b> Review</p>
+        <h2>How to decide in ten minutes.</h2>
+      </div>
+      <p>You do not need to read the code. Open each demo, use it like a customer, then like a dispatcher.</p>
+    </div>
+
+    <div class="review">
+      <article class="panel">
+        <h3>Review checklist</h3>
+        <p>Each demo has the same five tabs, so you are comparing voice and density — not features.</p>
+        <ol class="steps">
+          <li><b>Landing first.</b> Does it explain the service in one screen, and would you trust it with your car?</li>
+          <li><b>Customer tab.</b> Find the ETA, the driver, and the price without hunting. This is the anxious-user test.</li>
+          <li><b>Driver tab.</b> Can a technician tell what to do next in under two seconds, outdoors, on a phone?</li>
+          <li><b>Dispatch tab.</b> Can a controller scan ten rows and spot the one that is late?</li>
+          <li><b>Notes tab.</b> Read the trade-off each direction admits to. Pick the risk you can live with.</li>
+        </ol>
+      </article>
+
+      <article class="panel next">
+        <h3>What happens after you pick</h3>
+        <p>One direction becomes the design system; the others stay as reference.</p>
+        <ol class="steps">
+          <li><b>Lock tokens.</b> Colour, type, radius, spacing, and motion go into the Tailwind theme and a short design notes file.</li>
+          <li><b>Scaffold.</b> Next.js 16 App Router, strict TypeScript, shadcn primitives, module folders from the architecture doc.</li>
+          <li><b>Build the slice.</b> Auth → vehicle → request → dispatch → tracking, with the security tests from day one.</li>
+        </ol>
+        <p class="note"><b>Mixing is allowed.</b> If you want A's customer flow with B's dispatch console, say so — that is a normal outcome, and the block structure already supports it.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <p>EVgoSmart · design review · November 2026</p>
+    <p>Concept demos · simulated fleet · Razorpay test mode</p>
+  </div>
+</footer>
+
+</body>
+</html>

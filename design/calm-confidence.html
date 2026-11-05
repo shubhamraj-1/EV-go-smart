@@ -1,0 +1,1213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>EVgoSmart — Calm Confidence</title>
+<meta name="description" content="Design direction A for EVgoSmart: calm, service-first, light. Landing, customer tracking, driver job, and dispatch console.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317171A'/%3E%3Cpath d='M18 5 9 18h6l-1.5 9L23 14h-6l1-9Z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F5EF;--bg-deep:#E9EEE5;--surface:#FFFFFF;--surface-2:#FAFBF7;
+  --ink:#12241C;--ink-2:#26382F;--muted:#5D6C64;--faint:#8A978F;
+  --line:#DEE5DB;--line-strong:#C8D3C5;
+  --accent:#0D6B4E;--accent-deep:#0A5540;--accent-soft:#E2F1E9;--accent-softer:#F0F8F3;
+  --amber:#A96A12;--amber-soft:#FBF0D9;--danger:#B42318;--danger-soft:#FDECEA;
+  --map-bg:#EAF0E7;--map-road:#D2DCCE;--map-road-2:#F7FAF5;--map-park:#D8E7D3;--map-water:#CFE0E8;
+  --radius:22px;--radius-md:16px;--radius-sm:11px;--pill:999px;
+  --shadow-sm:0 1px 2px rgba(18,36,28,.05);
+  --shadow:0 1px 2px rgba(18,36,28,.04),0 18px 40px -24px rgba(18,36,28,.22);
+  --shadow-lg:0 2px 4px rgba(18,36,28,.04),0 30px 70px -30px rgba(18,36,28,.30);
+  --font:"Plus Jakarta Sans",ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --max:1180px;--ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit}
+img,svg{display:block}
+[hidden]{display:none!important}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:24px}
+.icon{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.icon.sm{width:15px;height:15px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* demo chrome */
+.demobar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:18px;min-height:58px;padding:8px 22px;background:#0F1F19;color:#EAF2EC;border-bottom:1px solid rgba(255,255,255,.08)}
+.demobar .d-brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:13px;letter-spacing:-.01em;white-space:nowrap}
+.demobar .d-dot{width:8px;height:8px;border-radius:50%;background:#7FE0B4;box-shadow:0 0 0 4px rgba(127,224,180,.12)}
+.demobar .d-label{font-size:11px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:#8FA79B;white-space:nowrap}
+.demobar .d-tabs{display:flex;align-items:center;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.demobar .d-tabs::-webkit-scrollbar{display:none}
+.demobar .d-tab{appearance:none;border:0;background:none;color:#A9BDB2;padding:8px 12px;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;transition:background .18s var(--ease),color .18s var(--ease)}
+.demobar .d-tab:hover{color:#EAF2EC;background:rgba(255,255,255,.06)}
+.demobar .d-tab[aria-selected="true"]{background:#EAF2EC;color:#0F1F19}
+.demobar .d-back{font-size:12px;color:#A9BDB2;text-decoration:none;border:1px solid rgba(255,255,255,.16);padding:7px 11px;border-radius:999px;white-space:nowrap;transition:.18s}
+.demobar .d-back:hover{color:#fff;border-color:rgba(255,255,255,.4)}
+.demobar .d-tab:focus-visible,.demobar .d-back:focus-visible{outline-color:#7FE0B4}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:0 20px;border-radius:var(--pill);border:1px solid transparent;font-weight:600;font-size:14.5px;text-decoration:none;cursor:pointer;transition:transform .18s var(--ease),background .18s var(--ease),border-color .18s var(--ease),box-shadow .18s var(--ease)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 24px -14px rgba(13,107,78,.8)}
+.btn-primary:hover{background:var(--accent-deep)}
+.btn-secondary{background:var(--surface);color:var(--ink);border-color:var(--line-strong);box-shadow:var(--shadow-sm)}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.btn-quiet{background:var(--accent-softer);color:var(--accent);border-color:transparent}
+.btn-quiet:hover{background:var(--accent-soft)}
+.btn-sm{min-height:36px;padding:0 14px;font-size:13px}
+.btn-block{width:100%}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#1D352A}
+
+/* landing nav */
+.site-head{display:flex;align-items:center;gap:34px;padding-block:26px}
+.wordmark{display:flex;align-items:center;gap:9px;font-size:20px;font-weight:800;letter-spacing:-.035em;text-decoration:none}
+.wordmark .bolt{display:grid;place-items:center;width:29px;height:29px;border-radius:9px;background:var(--accent);color:#fff}
+.wordmark .bolt .icon{width:16px;height:16px;stroke-width:2.2}
+.site-links{display:flex;align-items:center;gap:28px;margin-left:auto}
+.site-links a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .16s}
+.site-links a:hover{color:var(--ink)}
+.site-head .btn{margin-left:6px}
+
+/* hero */
+.hero{position:relative;display:grid;grid-template-columns:1.02fr .98fr;gap:54px;align-items:center;padding-block:38px 74px}
+.hero-copy{position:relative;z-index:2}
+.eyebrow{display:flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.eyebrow::before{content:"";width:22px;height:1.5px;background:currentColor;opacity:.55}
+.hero h1{margin-top:20px;font-size:clamp(43px,5.5vw,70px);line-height:1.01;letter-spacing:-.052em;font-weight:700;max-width:12ch}
+.hero h1 .soft{position:relative;white-space:nowrap}
+.hero h1 .soft::after{content:"";position:absolute;left:-2px;right:-4px;bottom:.055em;height:.20em;background:var(--accent-soft);z-index:-1;border-radius:4px}
+.hero .lede{margin-top:22px;max-width:50ch;font-size:17px;line-height:1.65;color:var(--muted)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:30px}
+.hero-trust{display:flex;flex-wrap:wrap;gap:18px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line);max-width:520px}
+.hero-trust span{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.hero-trust .icon{color:var(--accent)}
+
+/* hero visual */
+.hero-visual{position:relative;z-index:1;min-height:520px;display:grid;place-items:center}
+.hero-glow{position:absolute;width:min(460px,100%);aspect-ratio:1;height:auto;border-radius:50%;background:radial-gradient(circle,rgba(13,107,78,.13),rgba(13,107,78,0) 66%);filter:blur(6px)}
+.hero-card{position:relative;width:min(100%,440px);background:var(--surface);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow-lg);overflow:hidden;transform:rotate(-.4deg)}
+.hero-card-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px 13px}
+.hero-card-top .cap{font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--faint)}
+.hero-card-top .ref{font-size:11px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+.hero-card-map{position:relative;height:186px;background:var(--map-bg);overflow:hidden;border-block:1px solid var(--line)}
+.hero-card-body{padding:18px 19px 19px}
+.hero-card-body h3{font-size:20px;letter-spacing:-.03em;font-weight:700}
+.hero-card-body .meta{margin-top:3px;font-size:12.5px;color:var(--muted)}
+.hero-driver{display:flex;align-items:center;gap:11px;margin-top:16px;padding-top:15px;border-top:1px solid var(--line)}
+.avatar{display:grid;place-items:center;width:39px;height:39px;border-radius:50%;background:var(--accent-soft);color:var(--accent-deep);font-size:12.5px;font-weight:800;letter-spacing:.02em;flex:none}
+.hero-driver .who{min-width:0}
+.hero-driver .who b{display:block;font-size:13.5px;letter-spacing:-.01em}
+.hero-driver .who small{display:block;color:var(--muted);font-size:11.5px;margin-top:1px}
+.hero-driver .plate{margin-left:auto;font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--muted);background:var(--surface-2);border:1px solid var(--line);padding:5px 8px;border-radius:7px;white-space:nowrap}
+.eta-ring{position:absolute;left:15px;top:15px;width:78px;height:78px;border-radius:50%;background:conic-gradient(var(--accent) 0 66%,rgba(255,255,255,.8) 66% 100%);box-shadow:0 12px 24px -12px rgba(18,36,28,.35)}
+.eta-ring::before{content:"";position:absolute;inset:6px;background:var(--surface);border-radius:50%}
+.eta-ring .eta-in{position:absolute;inset:0;display:grid;place-content:center;text-align:center;line-height:1}
+.eta-ring b{font-size:21px;letter-spacing:-.05em;font-weight:800}
+.eta-ring small{display:block;margin-top:3px;font-size:8.5px;font-weight:700;letter-spacing:.12em;color:var(--faint)}
+.hero-float{position:absolute;z-index:3;display:flex;align-items:center;gap:9px;background:var(--ink);color:#F2F7F3;padding:10px 13px;border-radius:12px;box-shadow:0 16px 34px -18px rgba(18,36,28,.6);font-size:11.5px;font-weight:600;letter-spacing:-.005em}
+.hero-float .pulse-dot{width:7px;height:7px;border-radius:50%;background:#7FE0B4;position:relative}
+.hero-float .pulse-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid #7FE0B4;animation:pulse 2.2s infinite}
+.hero-float.f1{left:0;top:28px}
+.hero-float.f2{right:2px;bottom:-16px;background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow)}
+.hero-float.f2 .icon{color:var(--accent)}
+@keyframes pulse{0%{transform:scale(.7);opacity:.9}70%,100%{transform:scale(1.55);opacity:0}}
+
+/* shared cards + map */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+.card-pad{padding:22px}
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:16px}
+.card-head h3{font-size:15.5px;font-weight:700;letter-spacing:-.02em}
+.card-head .sub{font-size:12px;color:var(--muted);margin-top:2px}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:var(--pill);font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.badge-green{background:var(--accent-soft);color:var(--accent-deep)}
+.badge-amber{background:var(--amber-soft);color:var(--amber)}
+.badge-gray{background:var(--surface-2);border:1px solid var(--line);color:var(--muted)}
+.badge-red{background:var(--danger-soft);color:var(--danger)}
+.badge .dot{width:5px;height:5px;border-radius:50%;background:currentColor}
+.map{position:relative;overflow:hidden;background:var(--map-bg);isolation:isolate}
+.map svg{width:100%;height:100%;display:block}
+.map-road{stroke:var(--map-road);fill:none;stroke-linecap:round}
+.map-road-2{stroke:var(--map-road-2);fill:none;stroke-linecap:round}
+.map-park{fill:var(--map-park);opacity:.85}
+.map-water{fill:var(--map-water);opacity:.7}
+.map-route{fill:none;stroke:var(--accent);stroke-width:4.2;stroke-linecap:round;stroke-dasharray:1 9}
+.map-route-halo{fill:none;stroke:rgba(255,255,255,.85);stroke-width:9;stroke-linecap:round}
+.map-pin{position:absolute;display:grid;place-items:center;width:32px;height:32px;border-radius:50% 50% 50% 4px;transform:rotate(-45deg);background:var(--ink);color:#fff;box-shadow:0 6px 14px rgba(18,36,28,.3)}
+.map-pin .icon{transform:rotate(45deg);width:15px;height:15px}
+.map-pin.dest{background:var(--accent);border-radius:50%;transform:none;width:15px;height:15px;box-shadow:0 0 0 5px rgba(13,107,78,.17)}
+.map-pin.van{background:var(--ink);border-radius:9px;transform:none;width:34px;height:34px}
+.map-pin.van .icon{transform:none}
+.map-label{position:absolute;background:rgba(255,255,255,.94);border:1px solid rgba(18,36,28,.07);color:var(--ink);font-size:10.5px;font-weight:700;padding:4px 8px;border-radius:6px;box-shadow:0 4px 10px rgba(18,36,28,.08);white-space:nowrap}
+.map-scale{position:absolute;right:10px;bottom:10px;background:rgba(255,255,255,.88);border-radius:6px;padding:3px 6px;font-size:9px;font-weight:700;letter-spacing:.08em;color:var(--faint)}
+</style>
+<style>
+/* landing sections */
+.band{border-top:1px solid var(--line);background:var(--surface-2)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding-block:0}
+.stat{padding:30px 30px 30px 0}
+.stat + .stat{padding-left:34px;border-left:1px solid var(--line)}
+.stat b{display:block;font-size:clamp(30px,3.4vw,40px);line-height:1;letter-spacing:-.05em;font-weight:700}
+.stat b span{color:var(--accent);font-size:.55em;letter-spacing:0;vertical-align:.35em;margin-left:2px}
+.stat small{display:block;margin-top:8px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.stats-note{padding:0 0 15px;font-size:10.5px;letter-spacing:.03em;color:var(--faint)}
+.section{padding-block:86px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:34px}
+.section-head h2{font-size:clamp(30px,3.7vw,44px);line-height:1.08;letter-spacing:-.045em;font-weight:700;max-width:16ch;margin-top:12px}
+.section-head p{max-width:36ch;font-size:14px;line-height:1.65;color:var(--muted);padding-bottom:4px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step{position:relative;padding:26px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-sm);transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.step:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.step-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:34px}
+.step-num{display:grid;place-items:center;width:33px;height:33px;border-radius:50%;background:var(--accent-softer);color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.02em}
+.step .icon-lg{width:26px;height:26px;color:var(--accent);stroke-width:1.6}
+.step h3{font-size:17px;letter-spacing:-.025em;font-weight:700}
+.step p{margin-top:7px;font-size:13px;line-height:1.62;color:var(--muted)}
+.step-foot{display:flex;align-items:center;gap:6px;margin-top:20px;font-size:11.5px;font-weight:600;color:var(--accent)}
+.coverage{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:var(--pill);border:1px solid var(--line);background:var(--surface);font-size:11.5px;font-weight:600;color:var(--muted)}
+.chip .icon{color:var(--accent);width:13px;height:13px}
+.chip.planned{border-style:dashed;color:var(--faint)}
+
+/* pricing */
+.pricing{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.pricing h2{font-size:clamp(31px,3.8vw,45px);line-height:1.06;letter-spacing:-.045em;font-weight:700;margin-top:12px}
+.pricing .lede{margin-top:16px;font-size:14.5px;line-height:1.7;color:var(--muted);max-width:40ch}
+.pricing-points{display:grid;gap:11px;margin-top:26px}
+.pricing-points li{display:flex;align-items:flex-start;gap:9px;font-size:13px;font-weight:500;color:var(--ink-2);list-style:none}
+.pricing-points .icon{color:var(--accent);margin-top:2px}
+.price-card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow-lg);overflow:hidden}
+.price-card-top{padding:26px 26px 22px;background:linear-gradient(140deg,var(--accent-softer),var(--surface) 70%)}
+.price-card-top .cap{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.price-line{display:flex;align-items:baseline;gap:9px;margin-top:12px}
+.price-line b{font-size:52px;line-height:1;letter-spacing:-.055em;font-weight:700}
+.price-line span{font-size:13px;font-weight:600;color:var(--muted)}
+.price-card-body{padding:8px 26px 26px}
+.price-row{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}
+.price-row:last-of-type{border-bottom:0}
+.price-row span{color:var(--muted)}
+.price-row b{font-weight:600;font-variant-numeric:tabular-nums}
+.price-example{display:flex;justify-content:space-between;align-items:center;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-top:8px;font-size:12px;color:var(--muted)}
+.price-example b{font-size:15px;color:var(--ink);letter-spacing:-.02em}
+.fine{margin-top:12px;font-size:10.5px;line-height:1.55;color:var(--faint)}
+
+/* faq + footer */
+.faq{display:grid;grid-template-columns:.55fr 1fr;gap:56px;align-items:start}
+.faq h2{font-size:clamp(28px,3.3vw,38px);line-height:1.08;letter-spacing:-.04em;font-weight:700;margin-top:12px}
+.faq-list{border-top:1px solid var(--line-strong)}
+.faq details{border-bottom:1px solid var(--line);padding:18px 0}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:18px;list-style:none;cursor:pointer;font-size:14.5px;font-weight:600;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .icon{color:var(--muted);transition:transform .2s var(--ease)}
+.faq details[open] summary .icon{transform:rotate(45deg);color:var(--accent)}
+.faq details p{margin-top:10px;font-size:13px;line-height:1.65;color:var(--muted);max-width:62ch}
+.footer{border-top:1px solid var(--line);background:var(--surface-2)}
+.footer-inner{display:flex;flex-wrap:wrap;align-items:center;gap:18px;padding-block:28px}
+.footer-inner .wordmark{font-size:16px}
+.footer-inner .wordmark .bolt{width:24px;height:24px;border-radius:7px}
+.footer-inner p{font-size:11.5px;color:var(--faint);margin-left:auto}
+.footer-links{display:flex;gap:18px;font-size:11.5px;color:var(--muted)}
+
+/* app shell */
+.app{padding-block:34px 70px}
+.app-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:22px}
+.app-head .eyebrow{margin-bottom:10px}
+.app-head h2{font-size:clamp(26px,3.2vw,36px);line-height:1.1;letter-spacing:-.045em;font-weight:700}
+.app-head p{margin-top:5px;font-size:13px;color:var(--muted)}
+.demo-chip{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:var(--pill);border:1px dashed var(--line-strong);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:transparent}
+.app-grid > *,.ops-grid > *,.stack > *{min-width:0}
+.app-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(290px,.75fr);gap:18px;align-items:start}
+.stack{display:grid;gap:18px}
+.booking-card{overflow:hidden;border-radius:26px}
+.booking-top{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:23px 24px 19px}
+.booking-top .ref{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.booking-top h3{margin-top:7px;font-size:clamp(22px,2.6vw,29px);line-height:1.1;letter-spacing:-.04em;font-weight:700}
+.booking-top .where{display:flex;align-items:center;gap:6px;margin-top:7px;font-size:12.5px;color:var(--muted)}
+.booking-top .where .icon{width:14px;height:14px;color:var(--accent)}
+.booking-map{position:relative;height:270px;border-block:1px solid var(--line)}
+.booking-foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:17px 22px}
+.booking-foot .driver{display:flex;align-items:center;gap:11px;min-width:0}
+.booking-foot .driver b{display:block;font-size:13.5px;letter-spacing:-.01em}
+.booking-foot .driver small{display:block;font-size:11px;color:var(--muted)}
+.booking-foot .actions{margin-left:auto;display:flex;gap:8px}
+.eta-inline{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:12px;background:var(--accent-softer);border:1px solid var(--accent-soft)}
+.eta-inline b{font-size:18px;letter-spacing:-.04em;line-height:1}
+.eta-inline small{display:block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-top:2px}
+
+/* timeline */
+.timeline{list-style:none;margin:0;padding:0}
+.timeline li{position:relative;display:grid;grid-template-columns:18px 1fr auto;gap:11px;padding-bottom:17px}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{content:"";position:absolute;left:8px;top:16px;bottom:-1px;width:1.5px;background:var(--line)}
+.timeline li:last-child::before{display:none}
+.t-dot{width:17px;height:17px;border-radius:50%;border:2px solid var(--line-strong);background:var(--surface);margin-top:1px;display:grid;place-items:center}
+.t-dot .icon{width:9px;height:9px;stroke-width:3;color:#fff;opacity:0}
+.timeline li.done .t-dot{background:var(--accent);border-color:var(--accent)}
+.timeline li.done .t-dot .icon{opacity:1}
+.timeline li.done::before{background:var(--accent)}
+.timeline li.current .t-dot{border-color:var(--accent);background:var(--surface);box-shadow:0 0 0 4px var(--accent-soft)}
+.timeline li.current .t-dot::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.timeline b{display:block;font-size:12.5px;font-weight:600;letter-spacing:-.005em}
+.timeline li.current b{color:var(--accent-deep)}
+.timeline small{display:block;font-size:10.5px;color:var(--faint);margin-top:1px}
+.timeline time{font-size:10px;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:2px}
+
+/* summary cards */
+.kv{display:grid;gap:10px}
+.kv-row{display:flex;align-items:center;justify-content:space-between;gap:14px;font-size:12.5px}
+.kv-row span{color:var(--muted)}
+.kv-row b{font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.kv-total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:13px;margin-top:3px}
+.kv-total span{font-size:12px;color:var(--muted)}
+.kv-total b{font-size:21px;letter-spacing:-.045em}
+.mini-car{display:flex;align-items:center;gap:12px}
+.mini-car .car-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;background:var(--accent-softer);color:var(--accent);flex:none}
+.mini-car b{display:block;font-size:13px;letter-spacing:-.01em}
+.mini-car small{display:block;font-size:10.5px;color:var(--muted);margin-top:2px}
+.note{display:flex;gap:10px;padding:13px;border-radius:12px;background:var(--accent-softer);border:1px solid var(--accent-soft);font-size:11.5px;line-height:1.55;color:var(--ink-2)}
+.note .icon{color:var(--accent);flex:none;margin-top:1px}
+.support-card{display:flex;align-items:center;gap:12px}
+.support-card .icon-lg{width:22px;height:22px;color:var(--accent)}
+.support-card b{display:block;font-size:13px}
+.support-card small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.support-card a{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--accent);text-decoration:none;white-space:nowrap}
+
+/* driver */
+.online{display:flex;align-items:center;gap:12px;padding:10px 12px 10px 15px;border-radius:14px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow-sm)}
+.online .txt b{display:block;font-size:12.5px}
+.online .txt small{display:block;font-size:10.5px;color:var(--muted)}
+.switch{position:relative;display:inline-flex;align-items:center;width:44px;height:26px;border-radius:999px;background:var(--accent);border:0;cursor:pointer;padding:3px;margin-left:6px}
+.switch::after{content:"";width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transform:translateX(18px);transition:transform .2s var(--ease)}
+.switch[aria-checked="false"]{background:var(--line-strong)}
+.switch[aria-checked="false"]::after{transform:translateX(0)}
+.job-card{overflow:hidden;border-radius:26px}
+.job-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:23px 24px 18px}
+.job-top .kicker{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+.job-top h3{margin-top:6px;font-size:26px;line-height:1.1;letter-spacing:-.04em;font-weight:700}
+.job-top .meta{margin-top:5px;font-size:12.5px;color:var(--muted)}
+.job-map{position:relative;height:210px;border-block:1px solid var(--line)}
+.job-detail{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid var(--line)}
+.job-detail > div{padding:15px 18px}
+.job-detail > div + div{border-left:1px solid var(--line)}
+.job-detail small{display:block;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.job-detail b{display:block;margin-top:4px;font-size:13px;letter-spacing:-.01em}
+.job-actions{display:flex;flex-wrap:wrap;gap:9px;padding:17px 20px}
+.job-actions .btn{flex:1;min-width:130px}
+.checklist{display:grid;gap:9px;margin:0;padding:0;list-style:none}
+.checklist li{display:flex;align-items:flex-start;gap:9px;font-size:11.5px;color:var(--ink-2)}
+.checklist .icon{color:var(--accent);margin-top:1px}
+.stat-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.mini-stat{padding:12px 13px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line)}
+.mini-stat b{display:block;font-size:18px;letter-spacing:-.04em;line-height:1.1}
+.mini-stat small{display:block;font-size:9.5px;color:var(--muted);margin-top:3px}
+
+/* tables */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;text-align:left}
+th{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:13px 14px;border-bottom:1px solid var(--line);font-size:12px;vertical-align:middle}
+tr:last-child td{border-bottom:0}
+td b{font-weight:600;letter-spacing:-.01em}
+td .sub{display:block;font-size:10.5px;color:var(--muted);margin-top:2px}
+.tright{text-align:right}
+.mono{font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+td b.mono,td.mono{white-space:nowrap}
+
+/* ops */
+.ops-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.kpi{padding:17px 18px;border-radius:16px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+.kpi .cap{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint)}
+.kpi b{display:block;margin-top:9px;font-size:30px;line-height:1;letter-spacing:-.05em}
+.kpi b small{font-size:12px;letter-spacing:0;color:var(--muted);font-weight:600;margin-left:3px}
+.kpi .delta{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:10px;font-weight:600;color:var(--muted)}
+.kpi .delta.good{color:var(--accent)}
+.ops-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.65fr);gap:18px;align-items:start}
+.queue-table td{padding-block:12px}
+.van-row{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.van-row:last-child{border-bottom:0;padding-bottom:0}
+.van-row .van-ic{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:var(--accent-softer);color:var(--accent);flex:none}
+.van-row b{display:block;font-size:12.5px}
+.van-row small{display:block;font-size:10.5px;color:var(--muted);margin-top:1px}
+.van-row .right{margin-left:auto;text-align:right}
+.van-row .right b{font-size:11px}
+.van-row .right small{font-size:10px}
+.ops-map{position:relative;height:250px;overflow:hidden;border-radius:var(--radius);border:1px solid var(--line);margin-top:18px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:10.5px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block}
+.legend i.amber{background:var(--amber)}
+.legend i.gray{background:var(--faint)}
+
+/* notes */
+.tokens{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:18px}
+.swatch{border-radius:12px;border:1px solid rgba(18,36,28,.08);overflow:hidden;background:var(--surface)}
+.swatch .color{height:62px}
+.swatch .meta{padding:8px 9px}
+.swatch b{display:block;font-size:10.5px}
+.swatch small{display:block;font-size:9px;color:var(--faint);font-variant-numeric:tabular-nums;margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
+.type-ramp{display:grid;gap:15px}
+.type-row{display:grid;grid-template-columns:92px 1fr;gap:18px;align-items:baseline;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.type-row:last-child{border:0;padding-bottom:0}
+.type-row small{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.notes-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.notes-list{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.notes-list li{position:relative;padding-left:19px;font-size:12.5px;line-height:1.55;color:var(--muted)}
+.notes-list li::before{content:"";position:absolute;left:0;top:.52em;width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:.7}
+.notes-list.warn li::before{background:var(--amber)}
+.verdict{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.verdict > div{padding:16px 17px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+.verdict b{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.verdict p{font-size:12px;line-height:1.6;color:var(--muted)}
+.verdict .pick b{color:var(--accent)}
+.verdict .risk b{color:var(--amber)}
+
+/* responsive */
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;gap:42px;padding-bottom:60px}
+  .hero-visual{min-height:0;padding-block:6px 18px}
+  .hero-card{transform:none}
+  .hero h1{max-width:14ch}
+  .pricing,.faq{grid-template-columns:1fr;gap:36px}
+  .app-grid,.ops-grid{grid-template-columns:1fr}
+  .ops-kpis{grid-template-columns:repeat(2,1fr)}
+  .notes-grid{grid-template-columns:1fr}
+  .section-head{display:block}
+  .section-head p{margin-top:14px}
+  .tokens{grid-template-columns:repeat(3,1fr)}
+  .footer-inner p{margin-left:0;width:100%;order:5}
+}
+@media (max-width:760px){
+  .demobar{gap:10px;padding-inline:14px;flex-wrap:wrap}
+  .demobar .d-label{display:none}
+  .demobar .d-tabs{order:3;width:100%;margin-left:0;padding-bottom:2px}
+  .demobar .d-back{display:none}
+  .site-links{display:none}
+  .site-head{padding-block:20px}
+  .hero{padding-top:22px}
+  .hero h1{font-size:clamp(39px,11vw,54px)}
+  .hero .lede{font-size:15.5px}
+  .hero-float.f1{left:0;top:-6px}
+  .hero-float.f2{right:0;bottom:-12px}
+  .hero-visual{padding-top:24px}
+  .stats{grid-template-columns:1fr;padding-block:6px}
+  .stat{padding:18px 0}
+  .stat + .stat{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+  .steps{grid-template-columns:1fr}
+  .section{padding-block:58px}
+  .app-grid{gap:14px}
+  .booking-top{padding:19px 18px 16px}
+  .booking-map{height:230px}
+  .booking-foot{padding:15px 17px}
+  .booking-foot .actions{margin-left:0;width:100%}
+  .booking-foot .actions .btn{flex:1}
+  .job-detail{grid-template-columns:1fr 1fr}
+  .job-detail > div:nth-child(3){border-left:0;border-top:1px solid var(--line);grid-column:1/-1}
+  .job-detail > div:nth-child(2){border-left:1px solid var(--line)}
+  .stat-strip{grid-template-columns:1fr 1fr 1fr}
+  .tokens{grid-template-columns:repeat(2,1fr)}
+  .verdict{grid-template-columns:1fr}
+  .type-row{grid-template-columns:1fr;gap:7px}
+  .footer-inner{gap:12px}
+}
+@media (max-width:520px){
+  .wrap{padding-inline:17px}
+  .hero-cta .btn{width:100%}
+  .hero-trust{gap:10px 16px}
+  .hero-float{font-size:10px;padding:8px 10px}
+  .hero-float.f2{bottom:-10px}
+  .eta-ring{width:66px;height:66px;right:12px;top:12px}
+  .eta-ring b{font-size:18px}
+  .ops-kpis{grid-template-columns:1fr 1fr;gap:9px}
+  .kpi{padding:14px}
+  .kpi b{font-size:25px}
+  .booking-top .badge{font-size:9px;padding:4px 8px}
+  .online{width:100%}
+  .online .switch{margin-left:auto}
+  .app-head .demo-chip{display:none}
+  .job-actions .btn{min-width:100%}
+  .stat-strip{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+.job-notes{display:flex;gap:9px;padding:14px 18px;border-bottom:1px solid var(--line);font-size:11.5px;line-height:1.55;color:var(--muted)}
+.job-notes .icon{color:var(--accent);flex:none;margin-top:1px}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:10px}
+.bar>span{display:block;height:100%;border-radius:inherit;background:var(--accent)}
+.recent-link{font-size:11.5px;font-weight:700;color:var(--accent);text-decoration:none}
+.table-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:21px 22px 6px}
+.table-card-head h3{font-size:15.5px;letter-spacing:-.02em}
+.table-card-head p{font-size:11.5px;color:var(--muted);margin-top:2px}
+.toast{position:fixed;left:50%;bottom:24px;z-index:300;max-width:calc(100% - 32px);transform:translate(-50%,14px);opacity:0;pointer-events:none;background:var(--ink);color:#F4F8F5;padding:11px 16px;border-radius:11px;font-size:12.5px;font-weight:500;box-shadow:0 18px 40px -18px rgba(18,36,28,.6);transition:opacity .2s var(--ease),transform .2s var(--ease);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.map-pin.request{background:var(--amber);border-radius:50%;width:14px;height:14px;transform:none;box-shadow:0 0 0 5px rgba(169,106,18,.16)}
+@media (max-width:760px){
+  .table-wrap{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),transparent 100%)}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4.5 13.5H11L9.5 22 19 9.5h-6.5L13 2Z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 19 6v5c0 4.6-3 8.2-7 10-4-1.8-7-5.4-7-10V6l7-3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 3h3l1.2 4.2-2 1.4a14 14 0 0 0 6.6 6.6l1.4-2L21 14.4v3A2.6 2.6 0 0 1 18.4 20C10.4 19.4 4.6 13.6 4 5.6A2.6 2.6 0 0 1 6.6 3Z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 6"/></symbol>
+  <symbol id="i-nav" viewBox="0 0 24 24"><path d="M3 11 21 3l-8 18-2-8-8-2Z"/></symbol>
+  <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2" y="7" width="17" height="10" rx="2.5"/><path d="M22 10v4M6 12h5"/></symbol>
+  <symbol id="i-van" viewBox="0 0 24 24"><path d="M2 16V7a1 1 0 0 1 1-1h10v10M13 9h4l4 4v3h-2"/><circle cx="7" cy="17" r="2"/><circle cx="18" cy="17" r="2"/><path d="M9 17h7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0M4 13v4a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2Zm16 0v4a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2Z"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20M6 15h4"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H14a4 4 0 0 0 0-8h-4a4 4 0 0 1 0-8h5.5"/></symbol>
+</svg>
+
+<header class="demobar" aria-label="Design demo controls">
+  <div class="d-brand"><span class="d-dot"></span> EVgoSmart <span class="d-label">Direction A · Calm Confidence</span></div>
+  <nav class="d-tabs" role="tablist" aria-label="Demo screens">
+    <button class="d-tab" role="tab" id="tab-landing" aria-controls="panel-landing" data-tab="landing" aria-selected="true">Landing</button>
+    <button class="d-tab" role="tab" id="tab-customer" aria-controls="panel-customer" data-tab="customer" aria-selected="false" tabindex="-1">Customer</button>
+    <button class="d-tab" role="tab" id="tab-driver" aria-controls="panel-driver" data-tab="driver" aria-selected="false" tabindex="-1">Driver</button>
+    <button class="d-tab" role="tab" id="tab-ops" aria-controls="panel-ops" data-tab="ops" aria-selected="false" tabindex="-1">Dispatch</button>
+    <button class="d-tab" role="tab" id="tab-notes" aria-controls="panel-notes" data-tab="notes" aria-selected="false" tabindex="-1">Notes</button>
+  </nav>
+  <a class="d-back" href="index.html">All directions</a>
+</header>
+
+<main>
+<section role="tabpanel" id="panel-landing" data-panel="landing" aria-labelledby="tab-landing">
+  <div class="wrap">
+    <header class="site-head">
+      <a class="wordmark" href="#panel-landing" aria-label="EVgoSmart home">
+        <span class="bolt"><svg class="icon"><use href="#i-bolt"/></svg></span> EVgoSmart
+      </a>
+      <nav class="site-links" aria-label="Main">
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn-primary btn-sm" href="#customer">Get help now <svg class="icon sm"><use href="#i-arrow"/></svg></a>
+    </header>
+
+    <div class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">On-demand EV charging · Bengaluru pilot</p>
+        <h1>Stranded? We bring the <span class="soft">charge</span> to you.</h1>
+        <p class="lede">A mobile charging van reaches you in minutes — not a tow truck. Live ETA, transparent pricing, and a verified technician from request to recharge.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#customer"><svg class="icon"><use href="#i-bolt"/></svg> Get help now</a>
+          <a class="btn btn-secondary" href="#how">See how it works <svg class="icon sm"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="hero-trust">
+          <span><svg class="icon sm"><use href="#i-shield"/></svg> Verified technicians</span>
+          <span><svg class="icon sm"><use href="#i-clock"/></svg> 22 min target ETA</span>
+          <span><svg class="icon sm"><use href="#i-card"/></svg> Pay after service</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="hero-float f1"><span class="pulse-dot"></span> Driver assigned · 6:44 PM</div>
+        <article class="hero-card" aria-label="Example live booking">
+          <div class="hero-card-top">
+            <span class="cap">Active request</span>
+            <span class="ref">EVG-2026-000123</span>
+          </div>
+          <div class="hero-card-map">
+            <svg viewBox="0 0 440 186" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="440" height="186" fill="var(--map-bg)"/>
+              <rect class="map-park" x="16" y="16" width="92" height="56" rx="9"/>
+              <path class="map-water" d="M322-12c32 38 60 44 72 88s-14 76-8 122h66V-12Z"/>
+              <path class="map-road" stroke-width="12" d="M-24 158C74 136 118 76 214 70s158-8 250-44"/>
+              <path class="map-road" stroke-width="8" d="M-14 34 456 156"/>
+              <path class="map-road-2" stroke-width="4" d="M-24 158C74 136 118 76 214 70s158-8 250-44"/>
+              <path class="map-road" stroke-width="4" d="M72-12 102 206M338-12 304 206M-12 104 456 86"/>
+              <path class="map-route-halo" d="M72 146c34-16 48-44 92-48s64-25 104-23 46-16 82-30"/>
+              <path class="map-route" d="M72 146c34-16 48-44 92-48s64-25 104-23 46-16 82-30"/>
+            </svg>
+            <span class="map-label" style="left:9%;top:52%">EV-01 · En route</span>
+            <span class="map-label" style="left:50%;top:8%">You · Indiranagar</span>
+            <span class="map-pin van" style="left:13.5%;top:80%;transform:translate(-50%,-50%)"><svg class="icon"><use href="#i-van"/></svg></span>
+            <span class="map-pin dest" style="left:82%;top:17%;transform:translate(-50%,-50%)"></span>
+            <div class="eta-ring"><span class="eta-in"><b>12</b><small>MIN</small></span></div>
+          </div>
+          <div class="hero-card-body">
+            <h3>Ravi is 12 minutes away</h3>
+            <p class="meta">En route to 12th Main, Indiranagar · 11 kWh to 60%</p>
+            <div class="hero-driver">
+              <span class="avatar">RK</span>
+              <span class="who"><b>Ravi Kumar</b><small>4.9 ★ · 312 charges · EV-01</small></span>
+              <span class="plate">KA 01 EV 2043</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><b>22<span>min</span></b><small>Target average response</small></div>
+        <div class="stat"><b>24/7</b><small>Dispatch, every day</small></div>
+        <div class="stat"><b>50<span>+</span></b><small>Cities planned</small></div>
+      </div>
+      <p class="stats-note">Targets from the pilot plan — not current coverage. Demo fleet is simulated.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="section" id="how">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">How it works</p>
+          <h2>Three steps between stranded and moving.</h2>
+        </div>
+        <p>No tow truck, no detour. The van comes to the car, and the whole request stays visible from your phone.</p>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <div class="step-top"><span class="step-num">01</span><svg class="icon icon-lg"><use href="#i-pin"/></svg></div>
+          <h3>Drop a pin</h3>
+          <p>Share your location, battery level, and connector type. Add a note if the spot is hard to find.</p>
+          <div class="step-foot">Takes under a minute <svg class="icon sm"><use href="#i-arrow"/></svg></div>
+        </article>
+        <article class="step">
+          <div class="step-top"><span class="step-num">02</span><svg class="icon icon-lg"><use href="#i-route"/></svg></div>
+          <h3>We dispatch the nearest van</h3>
+          <p>Dispatch matches a van with the right connector and enough charge, then sends you a live ETA.</p>
+          <div class="step-foot">Auto-assign + dispatcher override <svg class="icon sm"><use href="#i-arrow"/></svg></div>
+        </article>
+        <article class="step">
+          <div class="step-top"><span class="step-num">03</span><svg class="icon icon-lg"><use href="#i-bolt"/></svg></div>
+          <h3>Charge where you park</h3>
+          <p>A verified technician tops you up to your target. Pay in-app after the charge and get a receipt by email.</p>
+          <div class="step-foot">Pay after service <svg class="icon sm"><use href="#i-arrow"/></svg></div>
+        </article>
+      </div>
+      <div class="coverage" aria-label="Service coverage">
+        <span class="chip"><svg class="icon"><use href="#i-pin"/></svg> Indiranagar</span>
+        <span class="chip"><svg class="icon"><use href="#i-pin"/></svg> Koramangala</span>
+        <span class="chip"><svg class="icon"><use href="#i-pin"/></svg> HSR Layout</span>
+        <span class="chip"><svg class="icon"><use href="#i-pin"/></svg> Whitefield</span>
+        <span class="chip planned"><svg class="icon"><use href="#i-pin"/></svg> Guwahati · planned</span>
+        <span class="chip planned"><svg class="icon"><use href="#i-plus"/></svg> 50+ cities planned</span>
+      </div>
+    </section>
+
+    <section class="section" id="pricing" style="padding-top:22px">
+      <div class="pricing">
+        <div>
+          <p class="eyebrow">Pricing</p>
+          <h2>One clear price. No surprise surge.</h2>
+          <p class="lede">You see the estimate before you confirm, and the final amount is based on the energy delivered. Taxes are included in this demo.</p>
+          <ul class="pricing-points">
+            <li><svg class="icon sm"><use href="#i-check"/></svg> ₹199 callout covers the van and technician</li>
+            <li><svg class="icon sm"><use href="#i-check"/></svg> ₹18 per kWh delivered, measured on site</li>
+            <li><svg class="icon sm"><use href="#i-check"/></svg> No surge pricing in the pilot</li>
+            <li><svg class="icon sm"><use href="#i-check"/></svg> Pay after the charge via Razorpay — UPI or card</li>
+          </ul>
+        </div>
+        <div class="price-card">
+          <div class="price-card-top">
+            <span class="cap">Demo pricing · Bengaluru</span>
+            <div class="price-line"><b>₹199</b><span>callout</span></div>
+            <p class="fine" style="margin-top:6px">Plus ₹18 per kWh. Taxes included.</p>
+          </div>
+          <div class="price-card-body">
+            <div class="price-row"><span>Energy rate</span><b>₹18 / kWh</b></div>
+            <div class="price-row"><span>Example: 11 kWh delivered</span><b>₹198</b></div>
+            <div class="price-row"><span>Payment timing</span><b>After service</b></div>
+            <div class="price-example"><span>Estimated total</span><b>₹397</b></div>
+            <p class="fine">Final bill uses delivered kWh. Demo pricing for the internship build — not a commercial offer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq" style="padding-top:24px">
+      <div class="faq">
+        <div>
+          <p class="eyebrow">Questions</p>
+          <h2>Before you request.</h2>
+        </div>
+        <div class="faq-list">
+          <details open>
+            <summary>What if no van is near me? <svg class="icon"><use href="#i-plus"/></svg></summary>
+            <p>Dispatch keeps searching and escalates to a human dispatcher. If we cannot reach you within the promised window, you can cancel at no cost.</p>
+          </details>
+          <details>
+            <summary>Do I need to stay with the car? <svg class="icon"><use href="#i-plus"/></svg></summary>
+            <p>We recommend it. If you need to step away, confirm with the technician first — they will call when they arrive and walk you through the handover.</p>
+          </details>
+          <details>
+            <summary>Which connectors do you support? <svg class="icon"><use href="#i-plus"/></svg></summary>
+            <p>CCS2, CHAdeMO, and Type 2 in the demo. Connector compatibility is checked before a van is assigned, so you never wait for the wrong van.</p>
+          </details>
+          <details>
+            <summary>Is this a real service? <svg class="icon"><use href="#i-plus"/></svg></summary>
+            <p>This is a design concept for an internship project. The fleet is simulated, the stats are targets, and payments use Razorpay test mode.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="wordmark"><span class="bolt"><svg class="icon"><use href="#i-bolt"/></svg></span> EVgoSmart</span>
+      <div class="footer-links"><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="index.html">All directions</a></div>
+      <p>Concept demo · simulated fleet · Razorpay test mode</p>
+    </div>
+  </footer>
+</section>
+
+<section role="tabpanel" id="panel-customer" data-panel="customer" aria-labelledby="tab-customer" hidden>
+  <div class="wrap app">
+    <div class="app-head">
+      <div>
+        <p class="eyebrow">Customer · live booking</p>
+        <h2>Good evening, Aarav.</h2>
+        <p>Your Tata Nexon EV is at 34%. Ravi is bringing the charge.</p>
+      </div>
+      <span class="demo-chip">Demo data · simulated fleet</span>
+    </div>
+
+    <div class="app-grid">
+      <div class="stack">
+        <article class="card booking-card">
+          <div class="booking-top">
+            <div>
+              <p class="ref">EVG-2026-000123 · booked 6:42 PM</p>
+              <h3>Ravi is on the way</h3>
+              <p class="where"><svg class="icon"><use href="#i-pin"/></svg> 12th Main, Indiranagar · 560038</p>
+            </div>
+            <div style="text-align:right">
+              <span class="badge badge-green"><span class="dot"></span> En route</span>
+              <div class="eta-inline" style="margin-top:10px">
+                <div><b>12</b><small>min away</small></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="booking-map map">
+            <svg viewBox="0 0 720 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="720" height="300" fill="var(--map-bg)"/>
+              <rect class="map-park" x="28" y="26" width="148" height="86" rx="12"/>
+              <rect class="map-park" x="532" y="188" width="150" height="84" rx="12"/>
+              <path class="map-water" d="M540-20c38 52 76 64 88 122s-16 100-8 158h112V-20Z"/>
+              <path class="map-road" stroke-width="16" d="M-30 246C116 214 180 118 336 112s250-8 414-58"/>
+              <path class="map-road" stroke-width="10" d="M-20 62 744 236"/>
+              <path class="map-road" stroke-width="6" d="M-20 62 744 236"/>
+              <path class="map-road-2" stroke-width="5" d="M-30 246C116 214 180 118 336 112s250-8 414-58"/>
+              <path class="map-road" stroke-width="6" d="M122-20 164 320M474-20 430 320M-20 168 744 140M-20 292 744 282"/>
+              <path class="map-route-halo" d="M120 246c56-24 78-72 148-80s98-46 158-44 82-22 134-44"/>
+              <path class="map-route" d="M120 246c56-24 78-72 148-80s98-46 158-44 82-22 134-44"/>
+            </svg>
+            <span class="map-label" style="left:6%;top:64%">EV-01 · Ravi</span>
+            <span class="map-label" style="left:58%;top:9%">You · 12th Main</span>
+            <span class="map-pin van" style="left:18%;top:82%;transform:translate(-50%,-50%)"><svg class="icon"><use href="#i-van"/></svg></span>
+            <span class="map-pin dest" style="left:78%;top:20%;transform:translate(-50%,-50%)"></span>
+            <span class="map-scale" style="display:flex;align-items:center;gap:6px"><span class="pulse-dot" style="width:6px;height:6px;border-radius:50%;background:var(--accent)"></span> updated 8s ago</span>
+          </div>
+
+          <div class="booking-foot">
+            <div class="driver">
+              <span class="avatar">RK</span>
+              <span><b>Ravi Kumar · 4.9 ★</b><small>EV-01 · Tata Ace EV · KA 01 EV 2043</small></span>
+            </div>
+            <div class="actions">
+              <button class="btn btn-secondary btn-sm" type="button"><svg class="icon sm"><use href="#i-phone"/></svg> Call Ravi</button>
+              <button class="btn btn-quiet btn-sm" type="button">Get support</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="job-detail" style="border-bottom:0;border-radius:22px;overflow:hidden">
+            <div><small>Connector</small><b>CCS2 · compatible</b></div>
+            <div><small>Current battery</small><b>34%</b></div>
+            <div><small>Target charge</small><b>60% · about 11 kWh</b></div>
+          </div>
+        </article>
+
+        <article class="card card-pad">
+          <div class="card-head" style="margin-bottom:4px">
+            <div><h3>Recent bookings</h3><p class="sub">Your last two completed charges</p></div>
+            <span class="badge badge-gray">2 this month</span>
+          </div>
+          <div class="van-row">
+            <span class="van-ic"><svg class="icon"><use href="#i-bolt"/></svg></span>
+            <span><b>Koramangala · 28 Oct</b><small>EVG-2026-000098 · 12.1 kWh</small></span>
+            <span class="right"><b>₹417</b><small>Paid · test mode</small></span>
+          </div>
+          <div class="van-row">
+            <span class="van-ic"><svg class="icon"><use href="#i-bolt"/></svg></span>
+            <span><b>HSR Layout · 19 Oct</b><small>EVG-2026-000081 · 8.4 kWh</small></span>
+            <span class="right"><b>₹350</b><small>Paid · test mode</small></span>
+          </div>
+        </article>
+      </div>
+
+      <div class="stack">
+        <article class="card card-pad">
+          <div class="card-head">
+            <div><h3>Live status</h3><p class="sub">Updates automatically</p></div>
+            <span class="badge badge-green">On time</span>
+          </div>
+          <ol class="timeline">
+            <li class="done"><span class="t-dot"><svg class="icon"><use href="#i-check"/></svg></span><div><b>Requested</b><small>Booking confirmed</small></div><time>6:42</time></li>
+            <li class="done"><span class="t-dot"><svg class="icon"><use href="#i-check"/></svg></span><div><b>Assigned</b><small>Ravi · EV-01</small></div><time>6:44</time></li>
+            <li class="current"><span class="t-dot"></span><div><b>En route</b><small>12 min away</small></div><time>6:44</time></li>
+            <li><span class="t-dot"></span><div><b>Arrived</b><small>We will notify you</small></div><time></time></li>
+            <li><span class="t-dot"></span><div><b>Charging</b><small>About 35 minutes</small></div><time></time></li>
+            <li><span class="t-dot"></span><div><b>Completed</b><small>Pay after the charge</small></div><time></time></li>
+          </ol>
+        </article>
+
+        <article class="card card-pad">
+          <div class="card-head">
+            <div><h3>Price estimate</h3><p class="sub">Final bill uses delivered kWh</p></div>
+            <span class="badge badge-gray">Demo</span>
+          </div>
+          <div class="kv">
+            <div class="kv-row"><span>Callout</span><b>₹199</b></div>
+            <div class="kv-row"><span>Energy · 11 kWh × ₹18</span><b>₹198</b></div>
+            <div class="kv-row"><span>Taxes</span><b>Included</b></div>
+            <div class="kv-total"><span>Estimated total</span><b>₹397</b></div>
+          </div>
+          <p class="fine">You will approve the final amount before paying. Razorpay test mode — no real charge.</p>
+        </article>
+
+        <article class="card card-pad">
+          <div class="card-head" style="margin-bottom:10px"><div><h3>Your vehicle</h3><p class="sub">Used for this request</p></div></div>
+          <div class="mini-car">
+            <span class="car-icon"><svg class="icon"><use href="#i-van"/></svg></span>
+            <span><b>Tata Nexon EV · 2024</b><small>CCS2 · 40.5 kWh · KA 05 MJ 8821</small></span>
+          </div>
+        </article>
+
+        <div class="note">
+          <svg class="icon sm"><use href="#i-shield"/></svg>
+          <span>Precise location is shared with Ravi and dispatch only. Location pings expire after 30 days.</span>
+        </div>
+
+        <article class="card card-pad">
+          <div class="support-card">
+            <svg class="icon icon-lg"><use href="#i-headset"/></svg>
+            <span><b>Need a human?</b><small>Dispatch is online 24/7</small></span>
+            <a href="#panel-customer">Call support</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section role="tabpanel" id="panel-driver" data-panel="driver" aria-labelledby="tab-driver" hidden>
+  <div class="wrap app">
+    <div class="app-head">
+      <div>
+        <p class="eyebrow">Driver · assigned job</p>
+        <h2>Your next job, Ravi.</h2>
+        <p>Accept, navigate, and update status as you go. Only your assigned jobs are visible.</p>
+      </div>
+      <div class="online">
+        <span class="txt"><b id="driver-state">You're online</b><small>Receiving jobs in Bengaluru</small></span>
+        <button class="switch" type="button" role="switch" aria-checked="true" aria-label="Online status" data-switch="driver-state"></button>
+      </div>
+    </div>
+
+    <div class="app-grid">
+      <div class="stack">
+        <article class="card job-card">
+          <div class="job-top">
+            <div>
+              <p class="kicker">Assigned job · 2.1 km away</p>
+              <h3>Aarav Mehta</h3>
+              <p class="meta">12th Main, Indiranagar · 560038 · +91 98••• ••210</p>
+            </div>
+            <span class="badge badge-green"><span class="dot"></span> En route</span>
+          </div>
+
+          <div class="job-map map">
+            <svg viewBox="0 0 720 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="720" height="220" fill="var(--map-bg)"/>
+              <rect class="map-park" x="30" y="18" width="120" height="60" rx="10"/>
+              <path class="map-water" d="M560-20c34 34 52 44 64 90s-10 82-4 130h100V-20Z"/>
+              <path class="map-road" stroke-width="14" d="M-30 182C120 160 190 92 348 86s238-2 382-46"/>
+              <path class="map-road" stroke-width="8" d="M-20 44 740 176"/>
+              <path class="map-road-2" stroke-width="5" d="M-30 182C120 160 190 92 348 86s238-2 382-46"/>
+              <path class="map-road" stroke-width="5" d="M118-20 156 240M468-20 430 240M-20 132 740 108"/>
+              <path class="map-route-halo" d="M104 184c50-20 68-58 128-64s86-32 138-30 72-16 116-34"/>
+              <path class="map-route" d="M104 184c50-20 68-58 128-64s86-32 138-30 72-16 116-34"/>
+            </svg>
+            <span class="map-label" style="left:7%;top:58%">EV-01 · You</span>
+            <span class="map-label" style="left:56%;top:8%">Aarav · 12th Main</span>
+            <span class="map-pin van" style="left:15%;top:82%;transform:translate(-50%,-50%)"><svg class="icon"><use href="#i-van"/></svg></span>
+            <span class="map-pin dest" style="left:74%;top:22%;transform:translate(-50%,-50%)"></span>
+          </div>
+
+          <div class="job-detail">
+            <div><small>Connector</small><b>CCS2</b></div>
+            <div><small>Battery</small><b>34% · target 60%</b></div>
+            <div><small>Est. energy</small><b>11 kWh</b></div>
+          </div>
+
+          <div class="job-notes">
+            <svg class="icon sm"><use href="#i-pin"/></svg>
+            <span><b style="color:var(--ink)">Access note:</b> Basement parking, gate 2. Call on arrival — customer will meet you at the ramp.</span>
+          </div>
+
+          <div class="job-actions">
+            <button class="btn btn-secondary" type="button"><svg class="icon"><use href="#i-nav"/></svg> Navigate</button>
+            <button class="btn btn-primary" type="button"><svg class="icon"><use href="#i-pin"/></svg> I've arrived</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="table-card-head">
+            <div><h3>Last 30 days</h3><p>Completed jobs and demo earnings</p></div>
+            <span class="badge badge-gray">30-day history</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Reference</th><th>Date</th><th>Area</th><th>Delivered</th><th>Status</th><th class="tright">Amount</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">000118</td><td>4 Nov</td><td>HSR Layout</td><td class="mono">9.4 kWh</td><td><span class="badge badge-green">Completed</span></td><td class="tright mono">₹368</td></tr>
+                <tr><td class="mono">000104</td><td>2 Nov</td><td>Koramangala</td><td class="mono">12.1 kWh</td><td><span class="badge badge-green">Completed</span></td><td class="tright mono">₹417</td></tr>
+                <tr><td class="mono">000097</td><td>30 Oct</td><td>Indiranagar</td><td class="mono">7.2 kWh</td><td><span class="badge badge-green">Completed</span></td><td class="tright mono">₹329</td></tr>
+                <tr><td class="mono">000091</td><td>28 Oct</td><td>Whitefield</td><td class="mono">15.0 kWh</td><td><span class="badge badge-green">Completed</span></td><td class="tright mono">₹469</td></tr>
+                <tr><td class="mono">000084</td><td>26 Oct</td><td>Jayanagar</td><td class="mono">—</td><td><span class="badge badge-gray">Cancelled</span></td><td class="tright mono">—</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="fine" style="padding:0 22px 18px">Only jobs assigned to you. Location pings are retained for 30 days, then expire.</p>
+        </article>
+      </div>
+
+      <div class="stack">
+        <article class="card card-pad">
+          <div class="card-head">
+            <div><h3>Job status</h3><p class="sub">Update only when true</p></div>
+            <span class="badge badge-amber">2 of 5</span>
+          </div>
+          <ol class="timeline">
+            <li class="done"><span class="t-dot"><svg class="icon"><use href="#i-check"/></svg></span><div><b>Assigned</b><small>Accepted 6:46 PM</small></div></li>
+            <li class="current"><span class="t-dot"></span><div><b>En route</b><small>2.1 km · about 7 min</small></div></li>
+            <li><span class="t-dot"></span><div><b>Arrived</b><small>Notify the customer</small></div></li>
+            <li><span class="t-dot"></span><div><b>Charging</b><small>Record start reading</small></div></li>
+            <li><span class="t-dot"></span><div><b>Completed</b><small>Enter delivered kWh</small></div></li>
+          </ol>
+        </article>
+
+        <article class="card card-pad">
+          <div class="card-head"><div><h3>Today</h3><p class="sub">Demo shift · 6:00 AM – now</p></div></div>
+          <div class="stat-strip">
+            <div class="mini-stat"><b>3</b><small>Jobs done</small></div>
+            <div class="mini-stat"><b>42</b><small>kWh delivered</small></div>
+            <div class="mini-stat"><b>₹1,240</b><small>Demo earnings</small></div>
+          </div>
+          <p class="fine">Earnings are illustrative. Driver payouts are out of scope for v1.</p>
+        </article>
+
+        <article class="card card-pad">
+          <div class="card-head">
+            <div><h3>Your van</h3><p class="sub">EV-01 · Tata Ace EV</p></div>
+            <span class="badge badge-gray">KA 01 EV 2043</span>
+          </div>
+          <div class="mini-car">
+            <span class="car-icon"><svg class="icon"><use href="#i-van"/></svg></span>
+            <span><b>Onboard battery · 68%</b><small>54 kWh capacity · enough for about 2 more jobs</small></span>
+          </div>
+          <div class="bar" aria-hidden="true"><span style="width:68%"></span></div>
+        </article>
+
+        <article class="card card-pad">
+          <div class="card-head" style="margin-bottom:12px"><div><h3>Before you move</h3><p class="sub">Safety checklist</p></div></div>
+          <ul class="checklist">
+            <li><svg class="icon sm"><use href="#i-check"/></svg> Charging cable and CCS2 adapter</li>
+            <li><svg class="icon sm"><use href="#i-check"/></svg> Safety vest and cones</li>
+            <li><svg class="icon sm"><use href="#i-check"/></svg> Phone mounted and charging</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<section role="tabpanel" id="panel-ops" data-panel="ops" aria-labelledby="tab-ops" hidden>
+  <div class="wrap app">
+    <div class="app-head">
+      <div>
+        <p class="eyebrow">Dispatch · live board</p>
+        <h2>Bengaluru, right now.</h2>
+        <p>Auto-dispatch is on. Every active booking and van is visible here.</p>
+      </div>
+      <span class="demo-chip">Demo data · 10s location pings</span>
+    </div>
+
+    <div class="ops-kpis">
+      <div class="kpi"><div class="cap">Open requests <svg class="icon sm"><use href="#i-clock"/></svg></div><b>4</b><span class="delta">+2 in the last 15 min</span></div>
+      <div class="kpi"><div class="cap">Vans available <svg class="icon sm"><use href="#i-van"/></svg></div><b>2<small>/ 3</small></b><span class="delta">1 charging at depot</span></div>
+      <div class="kpi"><div class="cap">Avg assignment <svg class="icon sm"><use href="#i-bolt"/></svg></div><b>38<small>s</small></b><span class="delta good">Target under 60s</span></div>
+      <div class="kpi"><div class="cap">SLA at risk <svg class="icon sm"><use href="#i-shield"/></svg></div><b>1</b><span class="delta" style="color:var(--amber)">Needs a decision</span></div>
+    </div>
+
+    <div class="ops-grid">
+      <article class="card">
+        <div class="table-card-head">
+          <div><h3>Live queue</h3><p>Oldest request first · SLA timer runs from creation</p></div>
+          <span class="badge badge-green"><span class="dot"></span> 4 active</span>
+        </div>
+        <div class="table-wrap">
+          <table class="queue-table">
+            <thead><tr><th>Request</th><th>Area</th><th>Connector</th><th>Battery</th><th>Waiting</th><th>Status</th><th></th></tr></thead>
+            <tbody>
+              <tr>
+                <td><b class="mono">EVG-000128</b><span class="sub">Priya S.</span></td>
+                <td>HSR Layout</td><td>CCS2</td><td class="mono">18%</td>
+                <td><span class="mono" style="color:var(--amber);font-weight:700">2m 10s</span></td>
+                <td><span class="badge badge-amber">No van nearby</span></td>
+                <td class="tright"><button class="btn btn-quiet btn-sm" type="button">Assign</button></td>
+              </tr>
+              <tr>
+                <td><b class="mono">EVG-000127</b><span class="sub">Kabir N.</span></td>
+                <td>Whitefield</td><td>CHAdeMO</td><td class="mono">41%</td>
+                <td><span class="mono">0m 48s</span></td>
+                <td><span class="badge badge-gray">Requested</span></td>
+                <td class="tright"><button class="btn btn-quiet btn-sm" type="button">Assign</button></td>
+              </tr>
+              <tr>
+                <td><b class="mono">EVG-000126</b><span class="sub">Meera J.</span></td>
+                <td>Indiranagar</td><td>CCS2</td><td class="mono">62%</td>
+                <td><span class="mono">6m 02s</span></td>
+                <td><span class="badge badge-green">Assigned</span></td>
+                <td class="tright"><button class="btn btn-quiet btn-sm" type="button">View</button></td>
+              </tr>
+              <tr>
+                <td><b class="mono">EVG-000125</b><span class="sub">Rohan D.</span></td>
+                <td>Koramangala</td><td>Type 2</td><td class="mono">27%</td>
+                <td><span class="mono" style="color:var(--danger);font-weight:700">11m 40s</span></td>
+                <td><span class="badge badge-red">SLA risk</span></td>
+                <td class="tright"><button class="btn btn-quiet btn-sm" type="button">Escalate</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="card card-pad">
+        <div class="card-head">
+          <div><h3>Fleet</h3><p class="sub">Bengaluru · 3 vans</p></div>
+          <span class="badge badge-green">2 available</span>
+        </div>
+        <div class="van-row">
+          <span class="van-ic"><svg class="icon"><use href="#i-van"/></svg></span>
+          <span><b>EV-01 · Ravi Kumar</b><small>En route · Aarav M.</small></span>
+          <span class="right"><b>68%</b><small>12 min to job</small></span>
+        </div>
+        <div class="van-row">
+          <span class="van-ic"><svg class="icon"><use href="#i-van"/></svg></span>
+          <span><b>EV-02 · Meera Shah</b><small>Available · Indiranagar</small></span>
+          <span class="right"><b>82%</b><small>Ready</small></span>
+        </div>
+        <div class="van-row">
+          <span class="van-ic"><svg class="icon"><use href="#i-van"/></svg></span>
+          <span><b>EV-03 · Imran Ali</b><small>Charging · depot</small></span>
+          <span class="right"><b>41%</b><small>18 min</small></span>
+        </div>
+        <div class="note" style="margin-top:16px">
+          <svg class="icon sm"><use href="#i-shield"/></svg>
+          <span>Auto-dispatch picks the nearest compatible van with enough energy. Every manual override is audited.</span>
+        </div>
+      </article>
+    </div>
+
+    <article class="card" style="margin-top:18px;padding:18px">
+      <div class="card-head" style="margin-bottom:12px">
+        <div><h3>Fleet map</h3><p class="sub">Simulated movement · 10s pings</p></div>
+        <span class="badge badge-gray">Live</span>
+      </div>
+      <div class="ops-map map">
+        <svg viewBox="0 0 1160 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="1160" height="250" fill="var(--map-bg)"/>
+          <rect class="map-park" x="40" y="26" width="180" height="70" rx="12"/>
+          <rect class="map-park" x="840" y="168" width="210" height="72" rx="12"/>
+          <path class="map-water" d="M900-20c40 40 78 54 90 108s-18 92-10 162h190V-20Z"/>
+          <path class="map-road" stroke-width="16" d="M-40 206C170 176 260 96 500 90s430 4 700-52"/>
+          <path class="map-road" stroke-width="10" d="M-30 48 1180 200"/>
+          <path class="map-road-2" stroke-width="5" d="M-40 206C170 176 260 96 500 90s430 4 700-52"/>
+          <path class="map-road" stroke-width="6" d="M180-20 230 270M700-20 650 270M-20 150 1180 122M-20 248 1180 232"/>
+          <path class="map-route-halo" d="M210 210c70-30 96-88 186-94s130-48 214-44 116-26 182-56"/>
+          <path class="map-route" d="M210 210c70-30 96-88 186-94s130-48 214-44 116-26 182-56"/>
+        </svg>
+        <span class="map-label" style="left:12%;top:62%">EV-01 · En route</span>
+        <span class="map-label" style="left:43%;top:8%">EV-02 · Available</span>
+        <span class="map-label" style="left:74%;top:56%">EV-03 · Charging</span>
+        <span class="map-label" style="left:26%;top:8%">Request · HSR</span>
+        <span class="map-label" style="left:60%;top:87%">Request · Koramangala</span>
+        <span class="map-pin van" style="left:20%;top:74%;transform:translate(-50%,-50%)"><svg class="icon"><use href="#i-van"/></svg></span>
+        <span class="map-pin van" style="left:52%;top:30%;transform:translate(-50%,-50%)"><svg class="icon"><use href="#i-van"/></svg></span>
+        <span class="map-pin van" style="left:81%;top:74%;transform:translate(-50%,-50%)"><svg class="icon"><use href="#i-van"/></svg></span>
+        <span class="map-pin request" style="left:31%;top:24%;transform:translate(-50%,-50%)"></span>
+        <span class="map-pin request" style="left:66%;top:76%;transform:translate(-50%,-50%)"></span>
+      </div>
+      <div class="legend">
+        <span><i></i> Van · en route</span>
+        <span><i class="amber"></i> Request waiting</span>
+        <span><i class="gray"></i> Depot / offline</span>
+        <span style="margin-left:auto">Customer contact visible only for active jobs</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section role="tabpanel" id="panel-notes" data-panel="notes" aria-labelledby="tab-notes" hidden>
+  <div class="wrap app">
+    <div class="app-head">
+      <div>
+        <p class="eyebrow">Direction A · design notes</p>
+        <h2>Calm Confidence</h2>
+        <p>A service brand that happens to be technology. Lower the heart rate before asking for a decision.</p>
+      </div>
+      <a class="btn btn-secondary btn-sm" href="index.html">Compare directions</a>
+    </div>
+
+    <div class="notes-grid">
+      <article class="card card-pad">
+        <div class="card-head"><div><h3>Why this direction</h3><p class="sub">The reasoning behind the surface</p></div></div>
+        <p style="font-size:13px;line-height:1.7;color:var(--muted)">A stranded driver is not browsing. They are anxious, possibly on a hard shoulder, and need one obvious next action. This direction treats the product like a calm service counter: soft surfaces, one primary CTA, an ETA that never disappears, and language that explains rather than sells.</p>
+        <ul class="notes-list" style="margin-top:16px">
+          <li>The ETA ring and status rail make waiting feel supervised, not vague.</li>
+          <li>Sage green and generous whitespace lower urgency without hiding the action.</li>
+          <li>Cards map cleanly to reusable blocks: ETA card, driver card, timeline, queue row.</li>
+          <li>The light palette demos well on a projector and keeps text contrast comfortable.</li>
+        </ul>
+      </article>
+      <article class="card card-pad">
+        <div class="card-head"><div><h3>What to watch</h3><p class="sub">Where the direction could fail</p></div></div>
+        <ul class="notes-list warn">
+          <li>Light rounded cards can drift into generic SaaS without a strong wordmark or photography.</li>
+          <li>The airy card system is too slow for a dense dispatch board — ops needs a tighter variant.</li>
+          <li>Status relies on green/amber; every state also needs a text label and icon.</li>
+          <li>Too many soft surfaces can feel bland. Add one confident ink panel for contrast.</li>
+        </ul>
+      </article>
+    </div>
+
+    <article class="card card-pad" style="margin-top:18px">
+      <div class="card-head"><div><h3>Palette</h3><p class="sub">Six tokens cover almost every surface</p></div></div>
+      <div class="tokens">
+        <div class="swatch"><div class="color" style="background:#0D6B4E"></div><div class="meta"><b>Forest</b><small>#0D6B4E · accent</small></div></div>
+        <div class="swatch"><div class="color" style="background:#12241C"></div><div class="meta"><b>Ink</b><small>#12241C · text</small></div></div>
+        <div class="swatch"><div class="color" style="background:#F3F5EF"></div><div class="meta"><b>Sage</b><small>#F3F5EF · page</small></div></div>
+        <div class="swatch"><div class="color" style="background:#DEE5DB"></div><div class="meta"><b>Mist</b><small>#DEE5DB · lines</small></div></div>
+        <div class="swatch"><div class="color" style="background:#A96A12"></div><div class="meta"><b>Amber</b><small>#A96A12 · attention</small></div></div>
+        <div class="swatch"><div class="color" style="background:#FFFFFF"></div><div class="meta"><b>White</b><small>#FFFFFF · surface</small></div></div>
+      </div>
+    </article>
+
+    <div class="notes-grid" style="margin-top:18px">
+      <article class="card card-pad">
+        <div class="card-head"><div><h3>Type &amp; shape</h3><p class="sub">Plus Jakarta Sans · 22px card radius</p></div></div>
+        <div class="type-ramp">
+          <div class="type-row"><small>Display</small><div style="font-size:clamp(30px,4vw,44px);line-height:1.02;letter-spacing:-.05em;font-weight:700">Bring the charge.</div></div>
+          <div class="type-row"><small>Heading</small><div style="font-size:23px;line-height:1.15;letter-spacing:-.04em;font-weight:700">Ravi is 12 minutes away</div></div>
+          <div class="type-row"><small>Body</small><div style="font-size:14px;line-height:1.6;color:var(--muted);max-width:42ch">A mobile charging van reaches you in minutes — not a tow truck.</div></div>
+          <div class="type-row"><small>Micro</small><div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)">On-demand EV charging · Bengaluru</div></div>
+        </div>
+      </article>
+      <article class="card card-pad">
+        <div class="card-head"><div><h3>Components &amp; motion</h3><p class="sub">What this demo already defines</p></div></div>
+        <div class="coverage" style="margin-top:0">
+          <span class="chip">ETA ring</span><span class="chip">Status timeline</span><span class="chip">Driver card</span>
+          <span class="chip">Price summary</span><span class="chip">Live queue</span><span class="chip">Fleet row</span>
+          <span class="chip">Map shell</span><span class="chip">Demo banner</span>
+        </div>
+        <ul class="notes-list" style="margin-top:16px">
+          <li>180–240 ms ease-out for state changes; no bounce.</li>
+          <li>One pulse only for the live marker; it stops under reduced motion.</li>
+          <li>44px minimum touch targets, visible focus, and text labels beside every status color.</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="verdict">
+      <div class="pick"><b>Choose this if</b><p>You want the customer experience to feel trustworthy and human, and you are willing to give the dispatch console a denser sub-theme of its own.</p></div>
+      <div class="risk"><b>Main risk</b><p>It is the safest and least distinctive of the three. The wordmark, illustration, and photography have to carry more personality than the layout does.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.d-tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('[data-panel]'));
+  var names = tabs.map(function(t){ return t.dataset.tab; });
+  function activate(name, updateHash){
+    if (names.indexOf(name) === -1) name = 'landing';
+    tabs.forEach(function(t){
+      var on = t.dataset.tab === name;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function(p){ p.hidden = p.dataset.panel !== name; });
+    if (updateHash) history.replaceState(null, '', '#' + name);
+    window.scrollTo(0, 0);
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ activate(t.dataset.tab, true); }); });
+  tabs.forEach(function(t, i){
+    t.addEventListener('keydown', function(e){
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      var dir = e.key === 'ArrowRight' ? 1 : -1;
+      var next = tabs[(i + dir + tabs.length) % tabs.length];
+      activate(next.dataset.tab, true);
+      next.focus();
+    });
+  });
+  var initial = location.hash.replace('#', '');
+  activate(names.indexOf(initial) !== -1 ? initial : 'landing', false);
+  window.addEventListener('hashchange', function(){
+    var h = location.hash.replace('#', '');
+    if (names.indexOf(h) !== -1) activate(h, false);
+  });
+
+  var toastTimer;
+  var toastEl = document.getElementById('toast');
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2800);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('button.btn'), function(btn){
+    btn.addEventListener('click', function(){ toast('Demo only — this action is wired in the production build.'); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-switch]'), function(btn){
+    btn.addEventListener('click', function(){
+      var on = btn.getAttribute('aria-checked') === 'true';
+      btn.setAttribute('aria-checked', on ? 'false' : 'true');
+      var label = document.getElementById(btn.dataset.switch);
+      if (label) label.textContent = on ? "You're offline" : "You're online";
+      toast(on ? 'You are offline. No new jobs will arrive.' : 'You are online. Receiving jobs in Bengaluru.');
+    });
+  });
+})();
+</script>
+</body>
+</html>

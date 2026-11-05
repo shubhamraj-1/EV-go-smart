@@ -1,0 +1,45 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# next / build output
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+
+# env — never commit
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# test output
+coverage/
+playwright-report/
+test-results/
+blob-report/
+
+# local scratch (screenshots, rendered slides)
+.shots/
+.slides/
+
+# logs / OS
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# editors
+.vscode/*
+!.vscode/extensions.json
+
+# MCP configuration
+.opencode/
+opencode.json
+opencode.jsonc
+
+# Internship report
+EVgoSmart.pdf
+

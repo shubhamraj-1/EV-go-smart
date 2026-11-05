@@ -1,0 +1,51 @@
+{
+  "name": "evgosmart",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@12.16.1",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "db:push": "for f in supabase/migrations/*.sql; do psql \"$DIRECT_DATABASE_URL\" -v ON_ERROR_STOP=1 -f \"$f\"; done",
+    "demo:seed": "tsx scripts/seed-demo.ts",
+    "demo:reset": "tsx scripts/reset-demo.ts",
+    "e2e": "playwright test",
+    "emails:dev": "echo 'Emails are console-logged in dev; see modules/notifications/service.ts.'"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "1.5.0",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "drizzle-orm": "^0.45.4",
+    "lucide-react": "1.69.0",
+    "next": "16.4.5",
+    "postgres": "^4.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "server-only": "^0.0.1",
+    "tailwind-merge": "3.7.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@tailwindcss/postcss": "4.3.4",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "dotenv": "^18.0.9",
+    "eslint": "10.14.0",
+    "eslint-config-next": "16.4.5",
+    "tailwindcss": "4.3.4",
+    "typescript": "6.0.3",
+    "vitest": "^5.1.0"
+  }
+}

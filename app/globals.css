@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@theme {
+  /* Surfaces */
+  --color-page: #f3f5ef;
+  --color-page-deep: #e9eee5;
+  --color-surface: #ffffff;
+  --color-surface-2: #fafbf7;
+
+  /* Text — `faint` is decorative only; text uses `subtle` or darker. */
+  --color-ink: #12241c;
+  --color-ink-2: #26382f;
+  --color-muted: #5d6c64;
+  --color-subtle: #5f6e65;
+  --color-faint: #8a978f;
+
+  /* Lines */
+  --color-line: #dee5db;
+  --color-line-strong: #c8d3c5;
+
+  /* Brand */
+  --color-accent: #0d6b4e;
+  --color-accent-deep: #0a5540;
+  --color-accent-soft: #e2f1e9;
+  --color-accent-softer: #f0f8f3;
+  --color-signal: #7fe0b4;
+
+  /* Status */
+  --color-amber: #8a5510;
+  --color-amber-soft: #fbf0d9;
+  --color-danger: #b42318;
+  --color-danger-soft: #fdecea;
+
+  /* Map illustration */
+  --color-map-bg: #eaf0e7;
+  --color-map-road: #d2dcce;
+  --color-map-road-2: #f7faf5;
+  --color-map-park: #d8e7d3;
+  --color-map-water: #cfe0e8;
+
+  /* Type */
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+
+  /* Radii */
+  --radius-control: 11px;
+  --radius-card: 16px;
+  --radius-panel: 22px;
+  --radius-shell: 26px;
+
+  /* Layout */
+  --container-page: 1180px;
+
+  /* Elevation */
+  --shadow-hairline: 0 1px 2px rgb(18 36 28 / 0.05);
+  --shadow-lift: 0 1px 2px rgb(18 36 28 / 0.04),
+    0 18px 40px -24px rgb(18 36 28 / 0.22);
+  --shadow-float: 0 2px 4px rgb(18 36 28 / 0.04),
+    0 30px 70px -30px rgb(18 36 28 / 0.3);
+  --shadow-pin: 0 6px 14px rgb(18 36 28 / 0.3);
+  --shadow-float-ink: 0 16px 34px -18px rgb(18 36 28 / 0.6);
+
+  /* Motion */
+  --ease-calm: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --animate-pulse-ring: pulse-ring 2.2s var(--ease-calm) infinite;
+
+  /* Breakpoints, matched to the design: 520 / 760 / 980 */
+  --breakpoint-sm: 520px;
+  --breakpoint-md: 760px;
+  --breakpoint-lg: 980px;
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.7);
+      opacity: 0.9;
+    }
+    70%,
+    100% {
+      transform: scale(1.55);
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* Conic progress ring used on map cards. */
+@utility eta-ring {
+  position: absolute;
+  display: grid;
+  place-content: center;
+  border-radius: 9999px;
+  background: conic-gradient(
+    var(--color-accent) 0 66%,
+    rgb(255 255 255 / 0.8) 66% 100%
+  );
+  box-shadow: 0 12px 24px -12px rgb(18 36 28 / 0.35);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border-radius: inherit;
+    background: var(--color-surface);
+  }
+
+  & > * {
+    position: relative;
+  }
+}
+
+@utility surface-gradient {
+  background-image: linear-gradient(
+    140deg,
+    var(--color-accent-softer),
+    var(--color-surface) 70%
+  );
+}
